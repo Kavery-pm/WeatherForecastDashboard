@@ -17,7 +17,7 @@ const Details:React.FC<DetailProps> = ({data,city})=>{
           }}
         >
         
-         <CityDateDetail data={data} />
+         <CityDateDetail city={city} date='10/12/2023'/>
         </Grid>
   
             </>
