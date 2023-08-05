@@ -1,9 +1,17 @@
 import { Box,TextField,Button } from '@mui/material'
-
-const SearchForm = ()=>{
+import React, { useState } from 'react'
+interface SearchFormProps {
+    onSearch:(cityName:string) =>void
+}
+const SearchForm:React.FC<SearchFormProps> = ({onSearch})=>{
+    
+const [cityName, setcityName] = useState<string>('')
+    const handleSearch = ()=>{
+       onSearch(cityName)
+    }
 return (
     <Box display="flex" alignItems="center" justifyContent="center" mb={3} mt={3}>
-        <TextField type='text' label='Enter city Name' variant='outlined' color='warning' sx={{
+        <TextField type='text' onChange={(event)=>setcityName(event.target.value)} label='Enter city Name' variant='outlined' color='warning' sx={{
           
              '& .MuiOutlinedInput-input': {
                  color: '#ffffff',
@@ -19,7 +27,7 @@ return (
                   },
                   mr: 3
         }} />
-        <Button type='button' color='warning' variant='contained'>Search city</Button>
+        <Button type='button' color='warning' variant='contained' onClick={handleSearch}>Search city</Button>
 
     </Box>
 )
