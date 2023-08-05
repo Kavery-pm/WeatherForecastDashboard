@@ -1,7 +1,27 @@
+import { WeatherData } from "../../types";
 import Layout from "../Layouts/Layout";
-
-const Details = ()=>{
-const content = <h1>hello</h1>
+import { Grid } from '@mui/material';
+import CityDateDetail from "./cityDateDetail";
+interface DetailProps {
+    data: WeatherData,
+    city: string
+}
+const Details:React.FC<DetailProps> = ({data,city})=>{
+    const content = (
+<>
+    <Grid
+          item
+          xs={4}
+          sx={{
+            height: '80px',
+          }}
+        >
+        
+         <CityDateDetail data={data} />
+        </Grid>
+  
+            </>
+)
     return (
      <Layout content={content} title='current Weather'/>
     )
