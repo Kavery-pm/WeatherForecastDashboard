@@ -4,13 +4,14 @@ import { Grid } from "@mui/material";
 import CityDateDetail from "./cityDateDetail";
 import { getDate } from "../../utilities/dateUtilities";
 import TemperatureDescription from "./temperatureDescription";
+import TemperatureDetails from "./TemperatureDetails";
 interface DetailProps {
   data: WeatherData;
   city: string;
 }
 const Details: React.FC<DetailProps> = ({ data, city }) => {
   const currentDate = getDate(data.dt);
-
+  console.log(data);
   const content = (
     <>
       <Grid
@@ -29,7 +30,19 @@ const Details: React.FC<DetailProps> = ({ data, city }) => {
           height: "80px",
         }}
       >
-       <TemperatureDescription   temperature={data.main.temp} description={data.weather[0]?.description}/>
+        <TemperatureDescription
+          temperature={data.main.temp}
+          description={data.weather[0]?.description}
+        />
+      </Grid>
+      <Grid
+        item
+        xs={4}
+        sx={{
+          height: "80px",
+        }}
+      >
+        <TemperatureDetails max={data.main.temp_max} min={data.main.temp_min} />
       </Grid>
     </>
   );
