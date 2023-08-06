@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.scss'
 import { Container, Typography,Grid,Paper,Button,Box } from '@mui/material'
 import SearchForm from './components/searchForm'
-import { fetchWeather } from './services/apiServices/weatherApi';
+import { fetchForecast, fetchWeather } from './services/apiServices/weatherApi';
 import TodayWeather from './components/weatherToday/todayWeather';
 import { getFavorites, saveFavorites } from './helpers/storage';
 import WeeklyForecast from './components/weeklyForecast/WeeklyForecast';
@@ -12,10 +12,13 @@ function App() {
 const [cityName, setcityName] = useState('');
 const [weather, setweather] = useState<any>(null);
 const [favorites, setFavorites] = useState<string[]>(getFavorites());
+const [forecast, setForecast] = useState<any>(null);
 const handleSearch = async(cityName:string)=>{
 const cityWeatherData = await fetchWeather(cityName);
+const cityForecastData = await fetchForecast(cityName);
 setcityName(cityName);
 setweather(cityWeatherData)
+setForecast(cityForecastData);
 }
 const handleAddFavorite = () => {
   if (cityName && weather) {
@@ -105,7 +108,7 @@ const isCityInFavorites = cityName && favorites.includes(cityName);
             )}
           </Grid>
         </Grid>
-  <WeeklyForecast/>
+  <WeeklyForecast forecastData={forecast}/>
       
       </Container>
   )
