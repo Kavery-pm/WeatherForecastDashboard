@@ -32,7 +32,7 @@ export type WeatherData = {
     date: string;
     temperature: number;
     humidity: number;
-   
+   dt_txt:string;
   description: string;
   weather: {
     description: string;
