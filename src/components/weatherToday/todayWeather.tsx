@@ -1,6 +1,7 @@
 import React from "react"
 import { WeatherData } from "../../types"
 import { Card, CardContent,Box,Grid} from '@mui/material'
+import Details from "./Details"
 interface TodayWeatherProps {
     weather: WeatherData,
     city: string
@@ -12,7 +13,7 @@ return (
      
       <Box mt={1}>
       <Grid container sx={{ padding: '3rem 0rem 0rem' }} className="todayWeatherbox">
-   <h1>{city}</h1>
+  <Details data={weather} city={city}/>
     </Grid>
       </Box>
     </CardContent>
