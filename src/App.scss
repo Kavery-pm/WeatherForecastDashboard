@@ -1,0 +1,62 @@
+@use 'variables.module.scss' as *;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto+Condensed:wght@300;400;700&display=swap');
+.app-container {
+  background: linear-gradient(-35deg, $background-color 0%, $primary-color);
+}
+
+.app-title {
+  color: $text-color;
+  margin: 5px;
+  font-family: $title-font-family !important
+}
+
+
+
+.favorites-paper {
+  min-height: 400px;
+  padding: 2px;
+  color: $text-color;
+  background: linear-gradient(-35deg, $background-color 0%, $primary-color);
+  border: 2px solid $text-color;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    border-color: $secondary-color;
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+}
+
+
+
+.favorite-city-name {
+  color: $text-color;
+  font-family: 'Poppins'Arial, sans-serif;
+}
+
+.weather-paper {
+  padding: 2px;
+  color: $text-color;
+}
+
+.add-favorite-btn {
+  align-items: center;
+}
+body {
+  margin: 0;
+  font-family: 'Poppins', Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  min-height: 100vh;
+  background: linear-gradient(-35deg, #000428 0%, #004e92);
+}
+.css-bhp9pd-MuiPaper-root-MuiCard-root{
+  background: linear-gradient(-35deg, #000428 0%, #004e92);
+  color: white !important
+ }

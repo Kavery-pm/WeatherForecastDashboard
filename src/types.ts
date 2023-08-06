@@ -4,7 +4,8 @@ export type WeatherData = {
       main: string;
       description: string;
       icon: string;
-      
+      clouds:number
+     
     }[];
     main: {
       temp: number;
@@ -24,6 +25,7 @@ export type WeatherData = {
       sunset: number;
     };
     name: string;
+    dt:number;
   }
   
  

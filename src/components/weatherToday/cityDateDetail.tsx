@@ -1,7 +1,7 @@
 import { Box,Typography} from '@mui/material'
 interface cityDetailProps {
     city: string,
-    date:any
+    date:string
 }
 const CityDateDetail: React.FC<cityDetailProps> = ({city,date})=>{
  
