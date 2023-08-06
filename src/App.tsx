@@ -5,6 +5,7 @@ import SearchForm from './components/searchForm'
 import { fetchWeather } from './services/apiServices/weatherApi';
 import TodayWeather from './components/weatherToday/todayWeather';
 import { getFavorites, saveFavorites } from './helpers/storage';
+import WeeklyForecast from './components/weeklyForecast/WeeklyForecast';
 
 function App() {
 
@@ -104,7 +105,7 @@ const isCityInFavorites = cityName && favorites.includes(cityName);
             )}
           </Grid>
         </Grid>
-  
+  <WeeklyForecast/>
       
       </Container>
   )

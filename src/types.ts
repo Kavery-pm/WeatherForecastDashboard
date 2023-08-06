@@ -28,5 +28,15 @@ export type WeatherData = {
     dt:number;
   }
   
- 
+  export interface ForecastItem {
+    date: string;
+    temperature: number;
+    humidity: number;
+   
+  description: string;
+  weather: {
+    description: string;
+    icon: string; 
+  }[];
+  }
   
