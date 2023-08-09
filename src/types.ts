@@ -14,11 +14,15 @@ export type WeatherData = {
       temp_max: number;
       pressure: number;
       humidity: number;
+      
     };
     wind: {
       speed: number;
       deg: number;
     };
+    clouds: {
+        all: number;
+      };
     sys: {
       country: string;
       sunrise: number;
