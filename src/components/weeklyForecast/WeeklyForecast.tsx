@@ -26,7 +26,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
     );
   }
 
-  const groupedData: { [key: string]: ForecastItem[] } = forecastData.list.reduce((acc, item) => {
+  const groupedData = forecastData.list.reduce((acc, item) => {
     const date = item.dt_txt.split(' ')[0];
     if (!acc[date]) {
       acc[date] = [item];
@@ -34,9 +34,8 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
       acc[date].push(item);
     }
     return acc;
-  }, {});
-  
-
+  }, {} as { [key: string]: ForecastItem[] });
+ 
   const handleDayClick = (date: string) => {
     setExpandedDay((prevExpanded) => (prevExpanded === date ? false : date));
     setHourlyWeather(groupedData[date]);
@@ -86,7 +85,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
                         <Grid
                           item
                           key={hourlyData.dt_txt}
-                          xs={2} // Adjust this value as per your desired grid layout
+                          xs={2} 
                           display="flex"
                           flexDirection="column"
                           alignItems="center"
@@ -96,10 +95,10 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
                             borderRadius: '8px',
                           }}
                         >
-                          {/* Display hourly weather details here */}
+                         
                           <DayWeatherDetails type='hourly'
                             day={hourlyData.dt_txt}
-                            description={hourlyData.weather[0].main}
+                            description={hourlyData.weather[0]?.description}
                           />
                         </Grid>
                       ))}

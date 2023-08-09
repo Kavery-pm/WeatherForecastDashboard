@@ -8,7 +8,7 @@ interface DayTemperatureDetailsProps {
 
 const DayTemperatureDetails: React.FC<DayTemperatureDetailsProps> = ({ maxTemp, minTemp }) => {
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between' }} gap={8}>
+    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
   <Typography variant="body1" color="textPrimary" sx={{color:'white'}}>
         Visibility: {maxTemp}&deg;C
       </Typography>
