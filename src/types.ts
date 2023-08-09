@@ -36,6 +36,10 @@ export type WeatherData = {
     date: string;
     temperature: number;
     humidity: number;
+    main:{
+        temp_max:number;
+        temp_min:number;
+    }
    dt_txt:string;
   description: string;
   weather: {

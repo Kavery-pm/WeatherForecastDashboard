@@ -4,7 +4,7 @@ import { Grid } from "@mui/material";
 import CityDateDetail from "./cityDateDetail";
 import { getDate } from "../../utilities/dateUtilities";
 import TemperatureDescription from "./temperatureDescription";
-import TemperatureDetails from "./TemperatureDetails";
+import TemperatureDetails from "./temperatureDetails";
 interface DetailProps {
   data: WeatherData;
   city: string;

@@ -1,6 +1,6 @@
 import { Box, Grid, Typography } from '@mui/material';
 import React from 'react';
-//import mapWeatherIcon from '../utilities/mapWeatherIcon';
+
 interface details {
   description: string;
   day: string,
@@ -36,9 +36,7 @@ const DayWeatherDetails :React.FC<details> = ({description,day,type}) => {
       >
         {type==='hourly'?time:day}
       </Typography>
-     
       <Box
-        xs={12}
         sx={{
           display: 'flex',
           alignItems: 'center',

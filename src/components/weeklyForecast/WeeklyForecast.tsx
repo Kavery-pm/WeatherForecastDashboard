@@ -26,7 +26,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
     );
   }
 
-  const groupedData = forecastData.list.reduce((acc, item) => {
+  const groupedData: { [key: string]: ForecastItem[] } = forecastData.list.reduce((acc, item) => {
     const date = item.dt_txt.split(' ')[0];
     if (!acc[date]) {
       acc[date] = [item];
@@ -35,6 +35,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
     }
     return acc;
   }, {});
+  
 
   const handleDayClick = (date: string) => {
     setExpandedDay((prevExpanded) => (prevExpanded === date ? false : date));
@@ -49,6 +50,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
           {Object.keys(groupedData).map((date) => {
             const dayData = groupedData[date];
             const firstDataOfDay = dayData[0];
+            console.log(firstDataOfDay)
             const maxTemp = Math.max(...dayData.map((item) => item.main.temp_max));
             const minTemp = Math.min(...dayData.map((item) => item.main.temp_min));
 
@@ -64,7 +66,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Grid container xs={12} alignItems="center">
                     <Grid item xs={6}>
-                      <DayWeatherDetails day={date} description={firstDataOfDay.weather[0].main} />
+                      <DayWeatherDetails day={date} description={firstDataOfDay.weather[0].description} type='' />
                     </Grid>
                     <Grid item xs={6}>
                       <DayTemperatureDetails maxTemp={maxTemp} minTemp={minTemp} />
@@ -83,7 +85,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
                       {hourlyWeather.map((hourlyData) => (
                         <Grid
                           item
-                          key={hourlyData.dt}
+                          key={hourlyData.dt_txt}
                           xs={2} // Adjust this value as per your desired grid layout
                           display="flex"
                           flexDirection="column"
