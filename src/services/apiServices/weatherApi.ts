@@ -14,7 +14,7 @@ export const fetchWeather = async (city:string) => {
     
       }
       export const fetchForecast = async (city:string) => {
-        const url = `${BASE_URL}forecast?q=${city}&appid=${API_KEY}&units=${UNITS}`
+        const url = `${BASE_URL}forecast?q=${city}&appid=${API_KEY}`
   
     
         const response = await axios.get(url);
