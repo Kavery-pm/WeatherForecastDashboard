@@ -52,6 +52,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
             console.log(firstDataOfDay)
             const maxTemp = Math.max(...dayData.map((item) => item.main.temp_max));
             const minTemp = Math.min(...dayData.map((item) => item.main.temp_min));
+            const humidity = Math.max(...dayData.map(item=>item.main.humidity))
 
             return (
               <Accordion
@@ -68,7 +69,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
                       <DayWeatherDetails day={date} description={firstDataOfDay.weather[0].description} type='' />
                     </Grid>
                     <Grid item xs={6}>
-                      <DayTemperatureDetails maxTemp={maxTemp} minTemp={minTemp} />
+                      <DayTemperatureDetails maxTemp={maxTemp} minTemp={minTemp} humidity={humidity}/>
                     </Grid>
                   </Grid>
                 </AccordionSummary>
