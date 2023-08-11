@@ -21,3 +21,21 @@ export const fetchWeather = async (city:string) => {
         return response.data;
      
     };
+    export async function fetchWeatherByCoordinates(latitude: number, longitude: number) {
+      const url = `${BASE_URL}/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
+      try {
+        const response = await axios.get(url
+          // `${BASE_URL}`, {
+          // params: {
+          //   lat: latitude,
+          //   lon: longitude,
+          //   appid: API_KEY, 
+          //   // or 'imperial' for Fahrenheit
+          // },
+        // }
+        );
+        return response.data;
+      } catch (error) {
+        throw new Error('Error fetching weather data by coordinates');
+      }
+    }

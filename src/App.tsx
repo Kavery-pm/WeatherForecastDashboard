@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import './App.scss'
 import { Container, Typography,Grid,Paper,Button,Box } from '@mui/material'
 import SearchForm from './components/searchForm'
-import { fetchForecast, fetchWeather } from './services/apiServices/weatherApi';
+import { fetchForecast, fetchWeather, fetchWeatherByCoordinates } from './services/apiServices/weatherApi';
 import TodayWeather from './components/weatherToday/todayWeather';
 import { getFavorites, saveFavorites } from './helpers/storage';
 import WeeklyForecast from './components/weeklyForecast/WeeklyForecast';
@@ -13,6 +13,27 @@ const [cityName, setcityName] = useState('');
 const [weather, setweather] = useState<any>(null);
 const [favorites, setFavorites] = useState<string[]>(getFavorites());
 const [forecast, setForecast] = useState<any>(null);
+const [geoWeather, setGeoWeather] = useState<any | null>(null); 
+useEffect(() => {
+  // Fetch user's geolocation
+  navigator.geolocation.getCurrentPosition(
+    async (position) => {
+      const { latitude, longitude } = position.coords;
+     
+      try {
+        // Fetch weather data using coordinates from a weather API
+        const response = await fetchWeatherByCoordinates(latitude, longitude); 
+      
+        setGeoWeather(response);
+      } catch (error) {
+        console.error('Error fetching geolocation-based weather data:', error);
+      }
+    },
+    (error) => {
+      console.error('Error getting geolocation:', error);
+   }
+   );
+}, []);
 const handleSearch = async(cityName:string)=>{
 const cityWeatherData = await fetchWeather(cityName);
 const cityForecastData = await fetchForecast(cityName);
@@ -92,7 +113,21 @@ const isCityInFavorites = cityName && favorites.includes(cityName);
             </Paper>
           </Grid>
   
+
           <Grid item xs={12} md={8}>
+          {geoWeather  && !cityName &&(
+  <Paper elevation={3} className='weather-paper'>
+              
+  <TodayWeather weather={geoWeather} city={geoWeather.name}/>
+  <Box sx={{ marginTop: 2 }}>
+  {!isCityInFavorites && (
+<Button variant="contained" color="warning" onClick={handleAddFavorite} sx={{alignItems:'center'}}>
+Add to Favorites
+</Button>
+)}
+  </Box>
+</Paper>
+          )}
             {cityName && (
               <Paper elevation={3} className='weather-paper'>
               
