@@ -1,5 +1,5 @@
 import { WeatherData } from "../../types";
-import Layout from "../Layouts/Layout";
+import Layout from "../Reusable/Layout";
 import { Grid } from "@mui/material";
 import CityDateDetail from "./cityDateDetail";
 import { getDate } from "../../utilities/dateUtilities";

@@ -1,22 +1,19 @@
 import React from "react";
 import { WeatherData } from "../../../types";
 import AirConditionsItem from "./AirConditionsItem";
-import Layout from "../../Layouts/Layout";
+import Layout from "../../Reusable/Layout.tsx";
 import { kelvinToCelsius } from "../../../utilities/temperatureUtilities.ts";
 
 interface TodayWeatherAirConditionsProps {
   data: WeatherData | null;
 }
 
-const AirConditions: React.FC<TodayWeatherAirConditionsProps> = ({
-  data,
-}) => {
+const AirConditions: React.FC<TodayWeatherAirConditionsProps> = ({ data }) => {
   const content = (
     <>
       <AirConditionsItem
         title="Real Feel"
-      
-        value={`${Math.round(kelvinToCelsius((data!.main.feels_like)))} °C`}
+        value={`${Math.round(kelvinToCelsius(data!.main.feels_like))} °C`}
         type="temperature"
       />
       <AirConditionsItem
