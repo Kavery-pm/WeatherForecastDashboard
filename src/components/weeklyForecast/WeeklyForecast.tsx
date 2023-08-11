@@ -62,7 +62,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
                     background: 'linear-gradient(-35deg, #000428 0%, #004e92)',
                 }}
               >
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <AccordionSummary expandIcon={<ExpandMoreIcon sx={{color:'white'}} />}>
                 <Grid container xs={12} alignItems="center">
                     <Grid item xs={6}>
                       <DayWeatherDetails day={date} description={firstDataOfDay.weather[0].description} type='' />
