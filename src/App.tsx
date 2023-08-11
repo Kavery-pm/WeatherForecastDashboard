@@ -26,8 +26,9 @@ function App() {
         try {
           // Fetch weather data using coordinates from a weather API
           const response = await fetchWeatherByCoordinates(latitude, longitude);
-
+          const forecastResponse = await fetchForecast(response.name);
           setGeoWeather(response);
+          setForecast(forecastResponse);
         } catch (error) {
           console.error(
             "Error fetching geolocation-based weather data:",
