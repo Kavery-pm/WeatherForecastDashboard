@@ -1,5 +1,6 @@
 import { Box, Grid, Typography } from '@mui/material';
 import React from 'react';
+import { getDays } from '../../utilities/dateUtilities';
 
 interface details {
   description: string;
@@ -8,7 +9,7 @@ interface details {
 
 }
 const DayWeatherDetails :React.FC<details> = ({description,day,type}) => {
-console.log(day)
+
   const time = day.split(' ')[1]
   return (
     <Grid
@@ -50,7 +51,7 @@ console.log(day)
           display: 'block',
         }}
       >
-        Sunday
+       {getDays(day)}
       </Typography>
       </Typography>
       <Box

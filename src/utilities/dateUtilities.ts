@@ -7,3 +7,8 @@ export function getDate(dt: number): string {
   const formattedDate = `${day}/${month}/${year}`;
   return formattedDate;
 }
+export function getDays (dateString: string){
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const dayIndex = new Date(dateString).getDay()
+  return daysOfWeek[dayIndex];
+}
