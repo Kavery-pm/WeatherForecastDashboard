@@ -46,7 +46,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
       title={expandedDay ? 'Detailed Forecast' : 'WEEKLY FORECAST'}
       content={
         <Grid item container display="flex" flexDirection="column" xs={12} gap="4px">
-          {Object.keys(groupedData).map((date) => {
+          {Object.keys(groupedData).slice(1,6).map((date) => {
             const dayData = groupedData[date];
             const firstDataOfDay = dayData[0];
             console.log(firstDataOfDay)
