@@ -10,6 +10,7 @@ import {
 import TodayWeather from "./components/weatherToday/todayWeather";
 import { getFavorites, saveFavorites } from "./helpers/storage";
 import WeeklyForecast from "./components/weeklyForecast/WeeklyForecast";
+import ErrorBox from "./components/Reusable/ErrorBox";
 
 function App() {
   const [cityName, setcityName] = useState("");
@@ -17,6 +18,7 @@ function App() {
   const [favorites, setFavorites] = useState<string[]>(getFavorites());
   const [forecast, setForecast] = useState<any>(null);
   const [geoWeather, setGeoWeather] = useState<any | null>(null);
+  const [error, seterror] = useState(null);
   useEffect(() => {
     // Fetch user's geolocation
     navigator.geolocation.getCurrentPosition(
@@ -42,11 +44,17 @@ function App() {
     );
   }, []);
   const handleSearch = async (cityName: string) => {
-    const cityWeatherData = await fetchWeather(cityName);
-    const cityForecastData = await fetchForecast(cityName);
-    setcityName(cityName);
-    setweather(cityWeatherData);
-    setForecast(cityForecastData);
+    try {
+      const cityWeatherData = await fetchWeather(cityName);
+      const cityForecastData = await fetchForecast(cityName);
+      setcityName(cityName);
+      setweather(cityWeatherData);
+      setForecast(cityForecastData);
+      seterror(null);
+    }catch(error){
+      console.log(error)
+seterror(error.message +"enter a valid city name")
+   }
   };
   const handleAddFavorite = () => {
     if (cityName && weather) {
@@ -59,8 +67,11 @@ function App() {
     }
   };
   const isCityInFavorites = cityName && favorites.includes(cityName);
+ 
+ 
   return (
     <Container maxWidth="md" className="app-container">
+       
       <Typography
         variant="h4"
         align="center"
@@ -69,8 +80,20 @@ function App() {
       >
         Weather Dashboard
       </Typography>
+      {error && (
+        <ErrorBox
+        margin="3rem auto"
+        flex="inherit"
+    type="error"
+    errorMessage={error}
+ 
+  />
+      )}
+    
+      {!error && 
+<>
       <SearchForm onSearch={handleSearch} />
-
+      
       <Grid container spacing={2} sx={{ marginTop: 2 }}>
         <Grid item xs={12} md={4}>
           <Paper
@@ -167,6 +190,7 @@ function App() {
         </Grid>
       </Grid>
       <WeeklyForecast forecastData={forecast} />
+      </>}
     </Container>
   );
 }
