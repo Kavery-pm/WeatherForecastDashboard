@@ -5,13 +5,17 @@ import CityDateDetail from "./cityDateDetail";
 import { getDate } from "../../utilities/dateUtilities";
 import TemperatureDescription from "./temperatureDescription";
 import TemperatureDetails from "./temperatureDetails";
+import ErrorBox from "../Reusable/ErrorBox";
 interface DetailProps {
   data: WeatherData;
   city: string;
 }
 const Details: React.FC<DetailProps> = ({ data, city }) => {
   const currentDate = getDate(data.dt);
-  console.log(data);
+  const noDataProvided =
+  !data || Object.keys(data).length === 0 ;
+  
+  if(noDataProvided) return <ErrorBox flex="1" type="error"/>
   const content = (
     <>
       <Grid

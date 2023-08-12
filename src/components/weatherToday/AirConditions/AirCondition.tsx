@@ -3,12 +3,16 @@ import { WeatherData } from "../../../types";
 import AirConditionsItem from "./AirConditionsItem";
 import Layout from "../../Reusable/Layout.tsx";
 import { kelvinToCelsius } from "../../../utilities/temperatureUtilities.ts";
+import ErrorBox from "../../Reusable/ErrorBox.tsx";
 
 interface TodayWeatherAirConditionsProps {
   data: WeatherData | null;
 }
 
 const AirConditions: React.FC<TodayWeatherAirConditionsProps> = ({ data }) => {
+  const noDataProvided =
+  !data || Object.keys(data).length === 0 ;
+  if(noDataProvided) return <ErrorBox flex="1" type="error"/>
   const content = (
     <>
       <AirConditionsItem
