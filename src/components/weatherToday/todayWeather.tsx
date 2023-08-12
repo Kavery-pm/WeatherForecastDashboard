@@ -9,7 +9,7 @@ interface TodayWeatherProps {
 }
 const TodayWeather: React.FC<TodayWeatherProps> = ({weather,city})=>{
 return (
-    <Card>
+    <Card sx={{background: 'linear-gradient(-35deg, #000428 0%, #004e92)'}}>
     <CardContent>
      
       <Box mt={1}>

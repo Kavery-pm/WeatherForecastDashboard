@@ -148,7 +148,7 @@ function App() {
 
             <Grid item xs={12} md={8}>
               {geoWeather && !cityName && (
-                <Paper elevation={3} className="weather-paper">
+                <Paper elevation={3} className="weather-paper" >
                   <TodayWeather weather={geoWeather} city={geoWeather.name} />
                   <Box sx={{ marginTop: 2 }}></Box>
                 </Paper>
@@ -157,7 +157,7 @@ function App() {
                 <Paper
                   elevation={3}
                   className="weather-paper"
-                  sx={{ display: "block" }}
+                  sx={{ display: "block", }}
                 >
                   <TodayWeather weather={weather} city={cityName} />
                   <Box
