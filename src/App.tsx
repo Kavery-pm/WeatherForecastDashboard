@@ -20,35 +20,28 @@ function App() {
   const [geoWeather, setGeoWeather] = useState<any | null>(null);
   const [error, seterror] = useState<any | null>(null);
   useEffect(() => {
-    // Fetch user's geolocation
-    navigator.geolocation.getCurrentPosition(
-      async (position) => {
-        const { latitude, longitude } = position.coords;
+    const fetchGeoWeather = async () => {
+      try {
+        const position = await new Promise<GeolocationPosition>((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject);
+        });
 
-        try {
-          // Fetch weather data using coordinates from a weather API
-          const response = await fetchWeatherByCoordinates(latitude, longitude);
-          const forecastResponse = await fetchForecast(response.name);
-          setGeoWeather(response);
-          setForecast(forecastResponse);
-        } catch (error) {
-          seterror(
-            `Error fetching geolocation-based weather data:${error.message}`
-          );
-          console.error(
-            "Error fetching geolocation-based weather data:",
-            error
-          );
-        }
-      },
-      (error) => {
-        seterror(
-          `Error fetching geolocation-based weather data:${error.message}`
-        );
-        console.error("Error getting geolocation:", error);
+        const { latitude, longitude } = position.coords;
+        const response = await fetchWeatherByCoordinates(latitude, longitude);
+        const forecastResponse = await fetchForecast(response.name);
+        setGeoWeather(response);
+        setForecast(forecastResponse);
+      } catch (error) {
+        const errorMessage =
+          typeof error === "string" ? error : "Error fetching geolocation-based weather data";
+        seterror(errorMessage);
+        console.error("Error fetching geolocation-based weather data:", error);
       }
-    );
+    };
+
+    fetchGeoWeather();
   }, []);
+
   const handleSearch = async (cityName: string) => {
     try {
       const cityWeatherData = await fetchWeather(cityName);
@@ -58,8 +51,10 @@ function App() {
       setForecast(cityForecastData);
       seterror(null);
     } catch (error) {
+      const errorMessage =
+      typeof error === "string" ? error : "Enter a valid city name";
       console.log(error);
-      seterror(error.message + "enter a valid city name");
+      seterror(errorMessage + "enter a valid city name");
     }
   };
   const handleAddFavorite = () => {
