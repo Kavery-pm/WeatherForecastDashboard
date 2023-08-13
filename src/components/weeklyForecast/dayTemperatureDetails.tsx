@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography } from '@mui/material';
+import { kelvinToCelsius } from '../../utilities/temperatureUtilities.ts';
 
 interface DayTemperatureDetailsProps {
   maxTemp: number;
@@ -15,10 +16,10 @@ const DayTemperatureDetails: React.FC<DayTemperatureDetailsProps> = ({ maxTemp, 
       </Typography>
        
       <Typography variant="body1" color="textPrimary" sx={{color:'white'}}>
-        Max: {maxTemp}&deg;C
+        Max: {Math.round(kelvinToCelsius(maxTemp))} °C
       </Typography>
       <Typography variant="body1" color="textPrimary" sx={{color:'white'}}>
-        Min: {minTemp}&deg;C
+        Min: {Math.round(kelvinToCelsius(minTemp))} °C
       </Typography>
     </div>
   );

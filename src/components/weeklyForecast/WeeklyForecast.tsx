@@ -84,12 +84,12 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
                   >
-                    <Grid container xs={12} alignItems="center">
+                    <Grid container spacing={2} alignItems="center">
                       <Grid item xs={6}>
                         <DayWeatherDetails
                           day={date}
                           description={firstDataOfDay.weather[0].description}
-                          type=""
+                          type="day"
                         />
                       </Grid>
                       <Grid item xs={6}>
@@ -109,7 +109,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
                       container
                       display="flex"
                       flexDirection="column"
-                      xs={12}
+                     
                       gap="4px"
                     >
                       <Grid item container xs={12} gap="4px">

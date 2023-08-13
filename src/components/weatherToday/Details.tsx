@@ -6,6 +6,7 @@ import { getDate } from "../../utilities/dateUtilities";
 import TemperatureDescription from "./temperatureDescription";
 import TemperatureDetails from "./temperatureDetails";
 import ErrorBox from "../Reusable/ErrorBox";
+
 interface DetailProps {
   data: WeatherData;
   city: string;
@@ -47,7 +48,9 @@ const Details: React.FC<DetailProps> = ({ data, city }) => {
         }}
       >
         <TemperatureDetails max={data.main.temp_max} min={data.main.temp_min} />
+      
       </Grid>
+      
     </>
   );
   return <Layout content={content} title="Current Weather" />;

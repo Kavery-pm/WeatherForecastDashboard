@@ -32,21 +32,7 @@ export type WeatherData = {
     dt:number;
   }
   
-//   export interface ForecastItem {
-//     date: string;
-//     temperature: number;
-//     humidity: number;
-//     main:{
-//         temp_max:number;
-//         temp_min:number;
-//     }
-//    dt_txt:string;
-//   description: string;
-//   weather: {
-//     description: string;
-//     icon: string; 
-//   }[];
-//   }
+
  export interface ForecastItem {
     dt: number;
     dt_txt: string;
@@ -65,3 +51,4 @@ export type WeatherData = {
     }[];
   
   }
+  
