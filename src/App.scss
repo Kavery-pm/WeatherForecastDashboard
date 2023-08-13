@@ -29,7 +29,15 @@
     cursor: pointer;
   }
 }
-
+.animated-weather {
+  transition: transform 0.2s ease-in-out;
+  border: 2px solid $text-color;
+  &:hover {
+    border-color: $secondary-color;
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+}
 
 
 .favorite-city-name {

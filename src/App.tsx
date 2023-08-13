@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import "./App.scss";
-import { Container, Typography, Grid, Paper, Button, Box } from "@mui/material";
+import {
+  Container,
+  Typography,
+  Grid,
+  Paper,
+  Button,
+  Box,
+} from "@mui/material";
 import SearchForm from "./components/searchForm";
 import {
   fetchForecast,
@@ -8,58 +15,80 @@ import {
   fetchWeatherByCoordinates,
 } from "./services/apiServices/weatherApi";
 import TodayWeather from "./components/weatherToday/todayWeather";
-import { getFavorites, saveFavorites } from "./helpers/storage";
+import {
+  getFavorites,
+  saveFavorites,
+} from "./helpers/storage";
 import WeeklyForecast from "./components/weeklyForecast/WeeklyForecast";
 import ErrorBox from "./components/Reusable/ErrorBox";
+import {  WeatherData } from "./types";
 
 function App() {
-  const [cityName, setcityName] = useState("");
-  const [weather, setweather] = useState<any>(null);
+  // State variables
+  const [cityName, setCityName] = useState<string>("");
+  const [weather, setWeather] = useState<WeatherData|null>(null); 
   const [favorites, setFavorites] = useState<string[]>(getFavorites());
-  const [forecast, setForecast] = useState<any>(null);
-  const [geoWeather, setGeoWeather] = useState<any | null>(null);
-  const [error, seterror] = useState<any | null>(null);
+  const [forecast, setForecast] = useState<any>(null); 
+  const [geoWeather, setGeoWeather] = useState<any>(null); 
+  const [error, setError] = useState<string | null>(null); 
+
+  // Fetch geolocation-based weather data on component mount
   useEffect(() => {
     const fetchGeoWeather = async () => {
       try {
-        const position = await new Promise<GeolocationPosition>((resolve, reject) => {
-          navigator.geolocation.getCurrentPosition(resolve, reject);
-        });
+        const position = await new Promise<GeolocationPosition>(
+          (resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject);
+          }
+        );
 
         const { latitude, longitude } = position.coords;
-        const response = await fetchWeatherByCoordinates(latitude, longitude);
+        const response = await fetchWeatherByCoordinates(
+          latitude,
+          longitude
+        );
         const forecastResponse = await fetchForecast(response.name);
         setGeoWeather(response);
         setForecast(forecastResponse);
       } catch (error) {
         const errorMessage =
-          typeof error === "string" ? error : "Error fetching geolocation-based weather data";
-        seterror(errorMessage);
-        console.error("Error fetching geolocation-based weather data:", error);
+          typeof error === "string"
+            ? error
+            : "Error fetching geolocation-based weather data";
+        setError(errorMessage);
+        console.error(
+          "Error fetching geolocation-based weather data:",
+          error
+        );
       }
     };
 
     fetchGeoWeather();
   }, []);
 
+  // Handle city search
   const handleSearch = async (cityName: string) => {
     try {
       const cityWeatherData = await fetchWeather(cityName);
       const cityForecastData = await fetchForecast(cityName);
-      setcityName(cityName);
-      setweather(cityWeatherData);
+      setCityName(cityName);
+      setWeather(cityWeatherData);
       setForecast(cityForecastData);
-      seterror(null);
+      setError(null);
     } catch (error) {
       const errorMessage =
-      typeof error === "string" ? error : "Enter a valid city name";
-      console.log(error);
-      seterror(errorMessage + "enter a valid city name");
+        typeof error === "string"
+          ? error
+          : "Enter a valid city name";
+      setError(errorMessage + " Enter a valid city name");
     }
   };
+
+  // Handle adding a city to favorites
   const handleAddFavorite = () => {
     if (cityName && weather) {
-      const isValidCity = weather.name.toLowerCase() === cityName.toLowerCase();
+      const isValidCity =
+        weather.name.toLowerCase() === cityName.toLowerCase();
       if (isValidCity && !favorites.includes(cityName)) {
         const newFavorites = [...favorites, cityName];
         setFavorites(newFavorites);
@@ -67,7 +96,10 @@ function App() {
       }
     }
   };
-  const isCityInFavorites = cityName && favorites.includes(cityName);
+
+  // Check if a city is in favorites
+  const isCityInFavorites =
+    cityName && favorites.includes(cityName);
 
   return (
     <Container maxWidth="md" className="app-container">
@@ -90,14 +122,16 @@ function App() {
 
       {!error && (
         <>
+          {/* Search form */}
           <SearchForm onSearch={handleSearch} />
 
           <Grid container spacing={2} sx={{ marginTop: 2 }}>
             <Grid item xs={12} md={4}>
+              {/* Favorite Cities */}
               <Paper
                 elevation={3}
                 sx={{
-                  minHeight: "400px",
+                  minHeight: "600px",
                   padding: 2,
                   color: "#FFFFFF",
                   background: "linear-gradient(-35deg, #000428 0%, #004e92)",
@@ -126,7 +160,6 @@ function App() {
                         background:
                           "linear-gradient(-35deg, #FF5722 0%, #FF9800 100%)",
                         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.25)",
-                        transition: "transform 0.2s ease-in-out",
                         fontWeight: "600",
                         textTransform: "uppercase",
                         "&:hover": {
@@ -147,19 +180,28 @@ function App() {
             </Grid>
 
             <Grid item xs={12} md={8}>
+              {/* Weather display */}
               {geoWeather && !cityName && (
-                <Paper elevation={3} className="weather-paper" >
-                  <TodayWeather weather={geoWeather} city={geoWeather.name} />
+                <Paper elevation={3} className="weather-paper animated-weather">
+                  <TodayWeather
+                    weather={geoWeather}
+                    city={geoWeather.name}
+                    forecast={forecast}
+                  />
                   <Box sx={{ marginTop: 2 }}></Box>
                 </Paper>
               )}
-              {cityName && (
+              {cityName && weather && (
                 <Paper
                   elevation={3}
                   className="weather-paper"
-                  sx={{ display: "block", }}
+                  sx={{ display: "block", minHeight: "550px" }}
                 >
-                  <TodayWeather weather={weather} city={cityName} />
+                  <TodayWeather
+                    weather={weather}
+                    city={cityName}
+                    forecast={forecast}
+                  />
                   <Box
                     sx={{
                       display: "flex",
@@ -187,6 +229,7 @@ function App() {
               )}
             </Grid>
           </Grid>
+          {/* Weekly forecast */}
           <WeeklyForecast forecastData={forecast} />
         </>
       )}
