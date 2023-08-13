@@ -9,7 +9,7 @@ interface details {
 
 }
 const DayWeatherDetails :React.FC<details> = ({description,day,type}) => {
-
+console.log(day)
   const time = day.split(' ')[1]
   return (
     <Grid
