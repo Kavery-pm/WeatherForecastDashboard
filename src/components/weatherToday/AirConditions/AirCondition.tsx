@@ -9,34 +9,46 @@ interface TodayWeatherAirConditionsProps {
   data: WeatherData | null;
 }
 
+/
 const AirConditions: React.FC<TodayWeatherAirConditionsProps> = ({ data }) => {
-  const noDataProvided =
-  !data || Object.keys(data).length === 0 ;
-  if(noDataProvided) return <ErrorBox flex="1" type="error"/>
+  const noDataProvided = !data || Object.keys(data).length === 0;
+  if (noDataProvided) return <ErrorBox flex="1" type="error" />;
+
+  const { main, wind, clouds } = data; // Destructure properties from data
+
   const content = (
     <>
-      <AirConditionsItem
-        title="Real Feel"
-        value={`${Math.round(kelvinToCelsius(data!.main.feels_like))} °C`}
-        type="temperature"
-      />
-      <AirConditionsItem
-        title="Wind"
-        value={`${data!.wind.speed} m/s`}
-        type="wind"
-      />
-      <AirConditionsItem
-        title="Clouds"
-        value={`${Math.round(data!.clouds.all)} %`}
-        type="clouds"
-      />
-      <AirConditionsItem
-        title="Humidity"
-        value={`${Math.round(data!.main.humidity)} %`}
-        type="humidity"
-      />
+      {main && (
+        <AirConditionsItem
+          title="Real Feel"
+          value={`${Math.round(kelvinToCelsius(main.feels_like))} °C`}
+          type="temperature"
+        />
+      )}
+      {wind && (
+        <AirConditionsItem
+          title="Wind"
+          value={`${wind.speed} m/s`}
+          type="wind"
+        />
+      )}
+      {clouds && (
+        <AirConditionsItem
+          title="Clouds"
+          value={`${Math.round(clouds.all)} %`}
+          type="clouds"
+        />
+      )}
+      {main && (
+        <AirConditionsItem
+          title="Humidity"
+          value={`${Math.round(main.humidity)} %`}
+          type="humidity"
+        />
+      )}
     </>
   );
+
   return (
     <Layout
       title="AIR CONDITIONS"
@@ -46,5 +58,4 @@ const AirConditions: React.FC<TodayWeatherAirConditionsProps> = ({ data }) => {
     />
   );
 };
-
-export default AirConditions;
+export default  AirConditions;

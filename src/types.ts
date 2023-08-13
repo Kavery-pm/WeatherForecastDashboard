@@ -56,6 +56,8 @@ export type WeatherData = {
       temp_max: number;
       temp_min: number;
      humidity: number;
+     feels_like: number;
+     pressure: number
     };
     weather: {
       description: string;
