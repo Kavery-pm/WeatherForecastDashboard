@@ -3,7 +3,7 @@ import { ForecastItem, WeatherData } from "../../types";
 import { Card, CardContent, Box, Grid } from "@mui/material";
 import Details from "./Details";
 import AirConditions from "./AirConditions/AirCondition";
-import DayWeatherDetails from "../weeklyForecast/DayWeatherDetails";
+import DayWeatherDetails from "../hourlyForecasts/hourlyForecast";
 import Layout from "../Reusable/Layout";
 
 interface TodayWeatherProps {
@@ -14,7 +14,11 @@ interface TodayWeatherProps {
   };
 }
 
-const TodayWeather: React.FC<TodayWeatherProps> = ({ weather, city, forecast }) => {
+const TodayWeather: React.FC<TodayWeatherProps> = ({
+  weather,
+  city,
+  forecast,
+}) => {
   const currentDate = new Date().toISOString().slice(0, 10); // Get current date in YYYY-MM-DD format
   const hourlyForecast = forecast?.list.filter((item: any) =>
     item.dt_txt.includes(currentDate)
@@ -25,7 +29,7 @@ const TodayWeather: React.FC<TodayWeatherProps> = ({ weather, city, forecast }) 
       container
       display="flex"
       flexDirection="column"
-     spacing={2}
+      spacing={2}
       gap="3rem"
       sx={{ marginTop: "12px" }}
     >
@@ -67,9 +71,8 @@ const TodayWeather: React.FC<TodayWeatherProps> = ({ weather, city, forecast }) 
             <Layout
               title="HOURLY FORECAST"
               content={hourlyContent}
-               mb="1rem"
-            
-               sx={{ marginTop: "2.9rem"}}
+              mb="1rem"
+              sx={{ marginTop: "2.9rem" }}
             />
           </Grid>
         </Box>

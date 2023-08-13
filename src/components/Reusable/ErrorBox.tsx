@@ -18,6 +18,7 @@ interface ErrorBoxProps {
 export default function ErrorBox(props: ErrorBoxProps) {
   return (
     <Box
+    data-testid="error-box"
       display={props.display || 'flex'}
       justifyContent={props.justifyContent || 'center'}
       alignItems={props.alignItems || 'center'}

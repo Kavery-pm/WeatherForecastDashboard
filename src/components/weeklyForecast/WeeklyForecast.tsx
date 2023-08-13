@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import Layout from "../Reusable/Layout";
 import { ForecastItem } from "../../types";
-import DayWeatherDetails from "./DayWeatherDetails";
+import DayWeatherDetails from "../hourlyForecasts/hourlyForecast";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import DayTemperatureDetails from "./dayTemperatureDetails";
 
@@ -109,7 +109,6 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
                       container
                       display="flex"
                       flexDirection="column"
-                     
                       gap="4px"
                     >
                       <Grid item container xs={12} gap="4px">
