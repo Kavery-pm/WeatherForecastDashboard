@@ -5,8 +5,8 @@ declare module '@mui/styles/defaultTheme' {
     interface DefaultTheme extends Theme {}
   }
   
- export const defaultFontFamily = "'Poppins', sans-serif";
-export const titleFontFamily = "'Caprasimo', cursive";
+ export const defaultFontFamily = "Poppins,sans-serif";
+export const titleFontFamily = "Caprasimo,cursive";
 
   
   const theme = createTheme({
