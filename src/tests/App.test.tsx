@@ -1,6 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
-
+import { ThemeProvider } from '@mui/material/styles';
 import App from '../App';
+import theme from '../themes/themes';
 
 // Mock fetchWeather and fetchForecast functions
 jest.mock('../services/apiServices/weatherApi', () => ({
@@ -71,8 +72,10 @@ describe('App', () => {
   });
 
   it('renders App component', async () => {
-    render(<App />);
-
+    render(
+    <ThemeProvider theme={theme}> {/* Provide the theme */}
+    <App />
+  </ThemeProvider>)
     // Wait for geolocation-based data to load
     await waitFor(() => screen.getByText(/Berlin/i));
 

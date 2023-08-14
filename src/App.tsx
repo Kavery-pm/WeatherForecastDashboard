@@ -1,36 +1,25 @@
 /**
  * Main application component for the Weather Dashboard.
- *
- * @component
- * @returns {JSX.Element} App component.
  */
 
-
-
 import  { useState, useEffect } from "react";
-import {
-  Container,
- Typography,
- Grid,Paper,Button,
-  ThemeProvider
-} from "@mui/material";
-
+import {Container,Typography,Grid,Paper,Button,ThemeProvider, CssBaseline} from "@mui/material";
 import Box from "@mui/material/Box";
 import SearchForm from "./components/searchForm";
-import {
-  fetchForecast,
-  fetchWeather,
-  fetchWeatherByCoordinates,
-} from "./services/apiServices/weatherApi";
+import {fetchForecast,fetchWeather,fetchWeatherByCoordinates} from "./services/apiServices/weatherApi";
 import TodayWeather from "./components/weatherToday/todayWeather";
 import { getFavorites, saveFavorites } from "./helpers/storage";
 import WeeklyForecast from "./components/weeklyForecast/WeeklyForecast";
 import ErrorBox from "./components/Reusable/ErrorBox";
 import { WeatherData } from "./types";
 import { makeStyles, createStyles } from "@mui/styles";
-import theme, { titleFontFamily } from "./themes/themes"; // Import your custom theme
-import clsx from 'clsx';
-
+import theme, { titleFontFamily } from "./themes/themes"; // Import custom theme
+/**
+ * Custom styles for the components in the Weather Dashboard app.
+ *
+ * @param {import("@mui/styles").Theme} theme - The current theme.
+ * @returns {import("@mui/styles").Styles} The custom styles object.
+ */
 const useStyles = makeStyles((theme) =>
   createStyles({
    
@@ -178,7 +167,7 @@ function App() {
 
   return (
      <ThemeProvider theme={theme}>
-      
+      <CssBaseline/>
       <Container maxWidth="md"  className={classes.appContainer}>
       <Typography
         variant="h4"
@@ -232,7 +221,7 @@ function App() {
             <Grid item xs={12} md={8}>
               {/* Weather display */}
               {geoWeather && !cityName && (
-                <Paper elevation={3} className={clsx(classes.weatherPaper, classes.animatedWeather)}>
+                <Paper elevation={3}className={`${classes.weatherPaper} ${classes.animatedWeather}`}>
                   <TodayWeather
                     weather={geoWeather}
                     city={geoWeather.name}
