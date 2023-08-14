@@ -23,16 +23,17 @@ const TodayWeather: React.FC<TodayWeatherProps> = ({
   const hourlyForecast = forecast?.list.filter((item: any) =>
     item.dt_txt.includes(currentDate)
   );
-
+  {/* displays the hourly forecast for the current date */}
   const hourlyContent = (
     <Grid
       container
       display="flex"
-      flexDirection="column"
-      spacing={2}
+      flexDirection="row"
+     
       gap="3rem"
       sx={{ marginTop: "12px" }}
     >
+    
       {hourlyForecast.map((hourlyData) => (
         <Grid
           item
