@@ -1,3 +1,15 @@
+/**
+ * Displays weather details for a specific day or hour.
+ *
+ * @component
+ * @param {Object} props - Component props.
+ * @param {string} props.description - Description of the weather.
+ * @param {string} props.day - Date and time of the weather data.
+ * @param {string} props.type - Type of weather data (day, hourly, DayHourly).
+ * @returns {JSX.Element} DayWeatherDetails component.
+ */
+
+
 import { Box, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { getDays } from '../../utilities/dateUtilities';
@@ -22,6 +34,7 @@ const DayWeatherDetails: React.FC<details> = ({ description, day, type }) => {
       }}
     >
       <Box>
+          {/* Display date or time based on the type */}
         <Typography
           variant="body1"
           component="div"
@@ -37,7 +50,7 @@ const DayWeatherDetails: React.FC<details> = ({ description, day, type }) => {
           }}
         >
           {type === 'hourly' || type === 'DayHourly' ? time : day}
-          
+             {/* Display day of the week for day type */}
           {type === 'day' && getDays(day)}
         </Typography>
       </Box>

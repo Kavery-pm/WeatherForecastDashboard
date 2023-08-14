@@ -1,3 +1,13 @@
+/**
+ * Displays the weekly forecast, grouped by days, with the ability to expand and view hourly details for each day.
+ *
+ * @component
+ * @param {Object} props - Component props.
+ * @param {Object} props.forecastData - Weather forecast data containing a list of ForecastItem objects.
+ * @param {ForecastItem[]} props.forecastData.list - List of forecast items.
+ * @returns {JSX.Element} WeeklyForecast component.
+ */
+
 import React, { useState } from "react";
 import {
   Grid,
@@ -28,7 +38,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
       </div>
     );
   }
-
+// Group forecast data by day
   const groupedData = forecastData.list.reduce((acc, item) => {
     const date = item.dt_txt.split(" ")[0];
     if (!acc[date]) {
@@ -38,7 +48,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
     }
     return acc;
   }, {} as { [key: string]: ForecastItem[] });
-
+// Handle click on a day to expand and show hourly details
   const handleDayClick = (date: string) => {
     setExpandedDay((prevExpanded) => (prevExpanded === date ? false : date));
     setHourlyWeather(groupedData[date]);
@@ -57,11 +67,11 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
           gap="4px"
         >
           {Object.keys(groupedData)
-            .slice(1, 6)
+            .slice(1, 6) // Display up to 5 days of forecast
             .map((date) => {
               const dayData = groupedData[date];
               const firstDataOfDay = dayData[0];
-              console.log(firstDataOfDay);
+            
               const maxTemp = Math.max(
                 ...dayData.map((item) => item.main.temp_max)
               );
@@ -71,7 +81,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
               const humidity = Math.max(
                 ...dayData.map((item) => item.main.humidity)
               );
-
+ 
               return (
                 <Accordion
                   key={date}

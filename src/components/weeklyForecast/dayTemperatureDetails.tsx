@@ -1,3 +1,14 @@
+/**
+ * Displays the day's temperature details including maximum temperature, minimum temperature, and humidity.
+ *
+ * @component
+ * @param {Object} props - Component props.
+ * @param {number} props.maxTemp - Maximum temperature in Kelvin.
+ * @param {number} props.minTemp - Minimum temperature in Kelvin.
+ * @param {number} props.humidity - Humidity percentage.
+ * @returns {JSX.Element} DayTemperatureDetails component.
+ */
+
 import React from 'react';
 import { Typography } from '@mui/material';
 import { kelvinToCelsius } from '../../utilities/temperatureUtilities.ts';

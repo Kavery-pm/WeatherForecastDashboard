@@ -1,3 +1,13 @@
+/**
+ * Renders a component displaying city and date details.
+ *
+ * @component
+ * @param {Object} props - Component props.
+ * @param {string} props.city - Name of the city.
+ * @param {string} props.date - Date to display.
+ * @returns {JSX.Element} CityDateDetail component.
+ */
+
 import { Box,Typography} from '@mui/material'
 interface cityDetailProps {
     city: string,

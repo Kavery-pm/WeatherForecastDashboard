@@ -1,3 +1,14 @@
+/**
+ * Displays the current weather, air conditions, and hourly forecast for a specific city.
+ *
+ * @component
+ * @param {Object} props - Component props.
+ * @param {WeatherData} props.weather - Current weather data for the city.
+ * @param {string} props.city - Name of the city.
+ * @param {Object} props.forecast - Forecast data for the city.
+ * @param {Array<ForecastItem>} props.forecast.list - List of forecast items.
+ * @returns {JSX.Element} TodayWeather component.
+ */
 import React from "react";
 import { ForecastItem, WeatherData } from "../../types";
 import { Card, CardContent, Box, Grid } from "@mui/material";

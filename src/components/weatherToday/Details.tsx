@@ -1,3 +1,13 @@
+/**
+ * Renders a component displaying detailed weather information for a specific city.
+ *
+ * @component
+ * @param {Object} props - Component props.
+ * @param {WeatherData} props.data - Weather data for the city.
+ * @param {string} props.city - Name of the city.
+ * @returns {JSX.Element} Details component.
+ */
+
 import { WeatherData } from "../../types";
 import Layout from "../Reusable/Layout";
 import { Grid } from "@mui/material";
@@ -12,6 +22,13 @@ interface DetailProps {
   city: string;
 }
 const Details: React.FC<DetailProps> = ({ data, city }) => {
+  /**
+   * Gets the current date from the weather data.
+   *
+   * @function
+   * @param {number} timestamp - Unix timestamp.
+   * @returns {string} Formatted date string.
+   */
   const currentDate = getDate(data.dt);
   const noDataProvided =
   !data || Object.keys(data).length === 0 ;

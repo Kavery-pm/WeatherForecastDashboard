@@ -1,3 +1,14 @@
+/**
+ * Renders a single air condition metric item.
+ *
+ * @component
+ * @param {Object} props - Component props.
+ * @param {string} props.title - Title of the air condition metric.
+ * @param {string} props.value - Value of the air condition metric.
+ * @param {string} props.type - Type of the air condition metric (temperature, wind, clouds, humidity).
+ * @returns {JSX.Element} AirConditionsItem component.
+ */
+
 import React from "react";
 import { WeatherData } from "../../../types";
 import AirConditionsItem from "./AirConditionsItem";

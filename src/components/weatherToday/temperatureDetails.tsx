@@ -1,3 +1,13 @@
+/**
+ * Displays the maximum and minimum temperatures in Celsius.
+ *
+ * @component
+ * @param {Object} props - Component props.
+ * @param {number} props.max - Maximum temperature in Kelvin.
+ * @param {number} props.min - Minimum temperature in Kelvin.
+ * @returns {JSX.Element} TemperatureDetails component.
+ */
+
 import { Box, Typography } from "@mui/material";
 import { kelvinToCelsius } from "../../utilities/temperatureUtilities.ts";
 import React from "react";

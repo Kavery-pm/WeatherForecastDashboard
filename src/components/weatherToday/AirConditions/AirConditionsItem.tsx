@@ -1,3 +1,15 @@
+/**
+ * Renders a single air condition metric item.
+ *
+ * @component
+ * @param {Object} props - Component props.
+ * @param {string} props.title - Title of the air condition metric.
+ * @param {string} props.value - Value of the air condition metric.
+ * @param {'temperature' | 'wind' | 'clouds' | 'humidity'} props.type - Type of the air condition metric.
+ * @returns {JSX.Element} AirConditionsItem component.
+ */
+
+
 import { Box, Grid,} from '@mui/material';
 import React from 'react';
 import ThermostatIcon from '@mui/icons-material/Thermostat';
