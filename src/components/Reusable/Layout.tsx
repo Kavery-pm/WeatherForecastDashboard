@@ -1,3 +1,20 @@
+/**
+ * Layout Component
+ *
+ * The Layout component provides a consistent structure for rendering a page section.
+ * It includes a customizable title, section subheader, and content area.
+ *
+ * @component
+ * @example
+ * // Basic usage of the Layout component
+ * <Layout title="Page Title" content={<p>This is the main content of the page.</p>} />
+ *
+ * @param {LayoutProps} props - The props for the Layout component.
+ * @returns {JSX.Element} - The rendered Layout component.
+ */
+
+
+
 import { Grid } from '@mui/material';
 import React, { ReactNode } from 'react';
 import SectionHeader from './sectionHeader';

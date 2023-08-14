@@ -1,3 +1,23 @@
+/**
+ * ErrorBox Component
+ *
+ * The ErrorBox component displays an error message along with an optional "Reload page" button.
+ * It provides different visual styles for different error types.
+ *
+ * @component
+ * @example
+ * // Display an error message with "Reload page" button
+ * <ErrorBox errorMessage="Something went wrong. Please try again." type="error" />
+ *
+ * @example
+ * // Display an info message without "Reload page" button
+ * <ErrorBox errorMessage="This is an informational message." type="info" />
+ *
+ * @param {ErrorBoxProps} props - The props for the ErrorBox component.
+ * @returns {JSX.Element} - The rendered ErrorBox component.
+ */
+
+
 
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import Box from '@mui/material/Box';

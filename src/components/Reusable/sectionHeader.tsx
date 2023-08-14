@@ -1,3 +1,19 @@
+/**
+ * SectionHeader Component
+ *
+ * The SectionHeader component displays a title for a section, with optional margin bottom.
+ *
+ * @component
+ * @example
+ * // Basic usage of the SectionHeader component
+ * <SectionHeader title="Section Title" />
+ *
+ * @param {SectionHeaderProps} props - The props for the SectionHeader component.
+ * @returns {JSX.Element} - The rendered SectionHeader component.
+ */
+
+
+
 import { Typography, TypographyProps } from '@mui/material';
 import React from 'react';
 

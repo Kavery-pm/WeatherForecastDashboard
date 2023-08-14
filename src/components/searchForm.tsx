@@ -1,3 +1,6 @@
+/**
+ The `SearchForm` component is responsible for rendering an input field and a button to search for weather information of a city.
+ */
 import { Box,TextField,Button } from '@mui/material'
 import React, { useState } from 'react'
 interface SearchFormProps {
