@@ -17,7 +17,7 @@ This is a single-page application (SPA) built using React and TypeScript that co
 1. Clone the repository:
 git clone https://github.com/Kavery-pm/WeatherForecastDashboard.git
 2. Install dependencies:
-cd weather-app
+cd WeatherForecastDashboard-main
 npm install
 
 3. Start the development server:
