@@ -39,7 +39,6 @@ If you're using Vite, the development server URL may differ from the traditional
 ## Deployment
 
 The project is deployed and accessible at: https://weather-forecast-dashboard-one.vercel.app/
-
 ## Design and Development Choices
 
 - **Technologies Used**: React, TypeScript, OpenWeatherMap API, @mui/material, Jest, scss,Testing Library,MUI system for styled components.
