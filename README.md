@@ -20,7 +20,11 @@ git clone https://github.com/Kavery-pm/WeatherForecastDashboard.git
 
 npm install
 
-3. Start the development server:
+3.Create a .env file in the root directory of your project. You can use this file to store sensitive information and configuration settings that your application needs to run. For example: VITE_REACT_APP_API_KEY=your_openweathermap_api_key_here
+
+Make sure to replace your_openweathermap_api_key_here with your actual OpenWeatherMap API key.
+
+4. Start the development server:
 
   npm run dev
 
@@ -32,11 +36,13 @@ npm install
 
 If you're using Vite, the development server URL may differ from the traditional http://localhost:3000, depending on your Vite configuration. Refer to the console output when you run `npm run dev` to determine the correct URL to access the app.
 
+## Deployment
 
+The project is deployed and accessible at: https://weather-forecast-dashboard-one.vercel.app/
 
 ## Design and Development Choices
 
-- **Technologies Used**: React, TypeScript, OpenWeatherMap API, @mui/material, Jest, scss,Testing Library.
+- **Technologies Used**: React, TypeScript, OpenWeatherMap API, @mui/material, Jest, scss,Testing Library,MUI system for styled components.
 - **Search Functionality**: Users can search for cities by name using the OpenWeatherMap API's city search endpoint.
 - **Favorites Functionality**: Favorite cities are stored in local storage for persistence across page reloads.
 - **Weather Forecast**: The app fetches and displays a 5-day weather forecast for the selected city.

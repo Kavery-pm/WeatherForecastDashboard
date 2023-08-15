@@ -12,7 +12,7 @@
 
 import { Box, Grid,} from '@mui/material';
 import React from 'react';
-import ThermostatIcon from '@mui/icons-material/Thermostat';
+import ThermostatIcon from '@mui/icons-material/Brightness7';
 import AirIcon from '@mui/icons-material/Air';
 import FilterDramaIcon from '@mui/icons-material/FilterDrama';
 import { Opacity } from '@mui/icons-material';
