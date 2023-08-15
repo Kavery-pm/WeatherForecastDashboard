@@ -15,7 +15,7 @@ import {
   AccordionSummary,
   AccordionDetails,
 } from "@mui/material";
-import Layout from "../Reusable/layout";
+import Layout from "../Reusable/Layout";
 import { ForecastItem } from "../../types";
 import DayWeatherDetails from "../hourlyForecasts/dayWeatherDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";

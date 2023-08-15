@@ -21,7 +21,7 @@ import {
 import TodayWeather from "./components/weatherToday/todayWeather";
 import { getFavorites, saveFavorites } from "./helpers/storage";
 import WeeklyForecast from "./components/weeklyForecast/WeeklyForecast";
-import ErrorBox from "./components/Reusable/errorBox";
+import ErrorBox from "./components/Reusable/ErrorBox";
 import { WeatherData } from "./types";
 import theme, { titleFontFamily } from "./themes/themes"; // Import custom theme
 import { styled } from "@mui/system";
