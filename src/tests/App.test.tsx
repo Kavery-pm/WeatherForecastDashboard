@@ -79,6 +79,6 @@ describe('App', () => {
     // Wait for geolocation-based data to load
     await waitFor(() => screen.getByText(/Berlin/i));
 
-    // ... rest of the test case ...
+   
   });
 });

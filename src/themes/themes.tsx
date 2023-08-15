@@ -1,5 +1,11 @@
+
+/**
+ * Custom theme configuration for the Weather Dashboard application.
+ */
+
 import { createTheme } from "@mui/material/styles";
 import { Theme } from '@mui/material/styles';
+// Extend the DefaultTheme interface to add MUI theme properties
 declare module '@mui/styles/defaultTheme' {
    
     interface DefaultTheme extends Theme {}

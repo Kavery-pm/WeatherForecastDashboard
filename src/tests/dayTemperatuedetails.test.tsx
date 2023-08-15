@@ -1,19 +1,4 @@
-// import { render, screen} from '@testing-library/react';
-// import '@testing-library/jest-dom/extend-expect'; // Import the jest-dom matchers
-// import DayTemperatureDetails from '../components/weeklyForecast/dayTemperatureDetails';
 
-// test('renders temperature details',()=>{
-//     const maxTemp = 313.15; // In Kelvin
-//     const minTemp = 285.15; // In Kelvin
-// const humidity = 89;
-// render(<DayTemperatureDetails maxTemp={maxTemp} minTemp={minTemp} humidity={humidity}/>)
-//  const maxTempElement = screen.getByText(`Max: ${Math.round(maxTemp - 273.15)}°C`);
-// const minTempElement = screen.getByText(`Min: ${Math.round(minTemp - 273.15)}°C`);
-// const humidityElement = screen.getByText(`Humidity: ${humidity}%`);
-// expect(maxTempElement).toBeInTheDocument();
-// expect(minTempElement).toBeInTheDocument();
-// expect(humidityElement).toBeInTheDocument();
-// })
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import DayTemperatureDetails from '../components/weeklyForecast/dayTemperatureDetails';
