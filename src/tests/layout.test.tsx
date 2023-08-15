@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Layout from "../components/reusable/layout";
+import Layout from "../components/Reusable/layout";
 
 describe("Layout", () => {
   it("renders the title", () => {

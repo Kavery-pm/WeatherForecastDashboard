@@ -9,13 +9,13 @@
  */
 
 import { WeatherData } from "../../types";
-import Layout from "../reusable/layout";
+import Layout from "../Reusable/layout";
 import { Grid } from "@mui/material";
 import CityDateDetail from "./cityDateDetail";
 import { getDate } from "../../utilities/dateUtilities";
 import TemperatureDescription from "./temperatureDescription";
 import TemperatureDetails from "./temperatureDetails";
-import ErrorBox from "../reusable/errorBox";
+import ErrorBox from "../Reusable/errorBox";
 
 interface DetailProps {
   data: WeatherData;

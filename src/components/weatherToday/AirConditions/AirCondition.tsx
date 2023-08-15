@@ -12,9 +12,9 @@
 import React from "react";
 import { WeatherData } from "../../../types.ts";
 import AirConditionsItem from "./airConditionsItem.tsx";
-import Layout from "../../reusable/layout.tsx";
+import Layout from "../../Reusable/layout.tsx";
 import { kelvinToCelsius } from "../../../utilities/temperatureUtilities.ts.ts";
-import ErrorBox from "../../reusable/errorBox.tsx";
+import ErrorBox from "../../Reusable/errorBox.tsx";
 
 interface TodayWeatherAirConditionsProps {
   data: WeatherData | null;

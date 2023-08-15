@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 
-import ErrorBox from "../components/reusable/errorBox";
+import ErrorBox from "../components/Reusable/errorBox";
 
 describe("ErrorBox", () => {
   it('renders with "info" type', () => {
