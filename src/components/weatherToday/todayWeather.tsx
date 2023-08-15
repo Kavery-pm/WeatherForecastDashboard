@@ -14,7 +14,7 @@ import { ForecastItem, WeatherData } from "../../types";
 import { Card, CardContent, Box, Grid } from "@mui/material";
 import Details from "./details";
 import AirConditions from "./airConditions/airCondition";
-import Layout from "../Reusable/Layout";
+import Layout from "../reusable/layout";
 import HourlyForecast from "../hourlyForecasts/hourlyForecasts";
 
 interface TodayWeatherProps {

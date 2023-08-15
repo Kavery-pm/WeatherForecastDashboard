@@ -9,8 +9,13 @@
  */
 
 import React, { useState } from "react";
-import {Grid,Accordion,AccordionSummary,AccordionDetails} from "@mui/material";
-import Layout from "../Reusable/Layout";
+import {
+  Grid,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from "@mui/material";
+import Layout from "../reusable/layout";
 import { ForecastItem } from "../../types";
 import DayWeatherDetails from "../hourlyForecasts/dayWeatherDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -117,12 +122,14 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
                       flexDirection="column"
                       gap="4px"
                     >
-                        <Layout
-              title="HOURLY FORECAST"
-              content={<HourlyForecast hourlyForecast={hourlyWeather} />}
-              mb="1rem"
-              sx={{ marginTop: "2.9rem" }}
-            />
+                      <Layout
+                        title="HOURLY FORECAST"
+                        content={
+                          <HourlyForecast hourlyForecast={hourlyWeather} />
+                        }
+                        mb="1rem"
+                        sx={{ marginTop: "2.9rem" }}
+                      />
                     </Grid>
                   </AccordionDetails>
                 </Accordion>
