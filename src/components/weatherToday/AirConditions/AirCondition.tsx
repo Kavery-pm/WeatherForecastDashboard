@@ -10,16 +10,15 @@
  */
 
 import React from "react";
-import { WeatherData } from "../../../types";
-import AirConditionsItem from "./AirConditionsItem";
+import { WeatherData } from "../../../types.ts";
+import AirConditionsItem from "./airConditionsItem.tsx";
 import Layout from "../../Reusable/Layout.tsx";
-import { kelvinToCelsius } from "../../../utilities/temperatureUtilities.ts";
+import { kelvinToCelsius } from "../../../utilities/temperatureUtilities.ts.ts";
 import ErrorBox from "../../Reusable/ErrorBox.tsx";
 
 interface TodayWeatherAirConditionsProps {
   data: WeatherData | null;
 }
-
 
 const AirConditions: React.FC<TodayWeatherAirConditionsProps> = ({ data }) => {
   const noDataProvided = !data || Object.keys(data).length === 0;
@@ -69,4 +68,4 @@ const AirConditions: React.FC<TodayWeatherAirConditionsProps> = ({ data }) => {
     />
   );
 };
-export default  AirConditions;
+export default AirConditions;

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import DayWeatherDetails from "../components/hourlyForecasts/hourlyForecast";
+import DayWeatherDetails from "../components/hourlyForecasts/dayWeatherDetails";
 describe("renders day weather details", () => {
   test("renders time", () => {
     const desc = "cloudy";

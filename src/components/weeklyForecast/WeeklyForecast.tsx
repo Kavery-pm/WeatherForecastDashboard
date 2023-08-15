@@ -9,17 +9,13 @@
  */
 
 import React, { useState } from "react";
-import {
-  Grid,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-} from "@mui/material";
+import {Grid,Accordion,AccordionSummary,AccordionDetails} from "@mui/material";
 import Layout from "../Reusable/Layout";
 import { ForecastItem } from "../../types";
-import DayWeatherDetails from "../hourlyForecasts/hourlyForecast";
+import DayWeatherDetails from "../hourlyForecasts/dayWeatherDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import DayTemperatureDetails from "./dayTemperatureDetails";
+import HourlyForecast from "../hourlyForecasts/hourlyForecasts";
 
 interface WeeklyForecastProps {
   forecastData: {
@@ -38,7 +34,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
       </div>
     );
   }
-// Group forecast data by day
+  // Group forecast data by day
   const groupedData = forecastData.list.reduce((acc, item) => {
     const date = item.dt_txt.split(" ")[0];
     if (!acc[date]) {
@@ -48,7 +44,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
     }
     return acc;
   }, {} as { [key: string]: ForecastItem[] });
-// Handle click on a day to expand and show hourly details
+  // Handle click on a day to expand and show hourly details
   const handleDayClick = (date: string) => {
     setExpandedDay((prevExpanded) => (prevExpanded === date ? false : date));
     setHourlyWeather(groupedData[date]);
@@ -71,7 +67,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
             .map((date) => {
               const dayData = groupedData[date];
               const firstDataOfDay = dayData[0];
-            
+
               const maxTemp = Math.max(
                 ...dayData.map((item) => item.main.temp_max)
               );
@@ -81,7 +77,7 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
               const humidity = Math.max(
                 ...dayData.map((item) => item.main.humidity)
               );
- 
+
               return (
                 <Accordion
                   key={date}
@@ -121,29 +117,12 @@ const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecastData }) => {
                       flexDirection="column"
                       gap="4px"
                     >
-                      <Grid item container xs={12} gap="4px">
-                        {hourlyWeather.map((hourlyData) => (
-                          <Grid
-                            item
-                            key={hourlyData.dt_txt}
-                            xs={2}
-                            display="flex"
-                            flexDirection="column"
-                            alignItems="center"
-                            sx={{
-                              padding: "2px 0 2px",
-                              background: "rgba(0, 0, 0, 0.05)",
-                              borderRadius: "8px",
-                            }}
-                          >
-                            <DayWeatherDetails
-                              type="hourly"
-                              day={hourlyData.dt_txt}
-                              description={hourlyData.weather[0]?.description}
-                            />
-                          </Grid>
-                        ))}
-                      </Grid>
+                        <Layout
+              title="HOURLY FORECAST"
+              content={<HourlyForecast hourlyForecast={hourlyWeather} />}
+              mb="1rem"
+              sx={{ marginTop: "2.9rem" }}
+            />
                     </Grid>
                   </AccordionDetails>
                 </Accordion>
