@@ -4,13 +4,7 @@
  */
 
 import { createTheme } from "@mui/material/styles";
-import { Theme } from '@mui/material/styles';
-// Extend the DefaultTheme interface to add MUI theme properties
-declare module '@mui/styles/defaultTheme' {
-   
-    interface DefaultTheme extends Theme {}
-  }
-  
+
  export const defaultFontFamily = "Poppins,sans-serif";
 export const titleFontFamily = "Caprasimo,cursive";
 
