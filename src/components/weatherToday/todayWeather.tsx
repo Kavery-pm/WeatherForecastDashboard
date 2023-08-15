@@ -12,7 +12,7 @@
 import React from "react";
 import { ForecastItem, WeatherData } from "../../types";
 import { Card, CardContent, Box, Grid } from "@mui/material";
-import Details from "./details";
+import Details from "./Details";
 import AirConditions from "./AirConditions/AirCondition";
 import Layout from "../Reusable/Layout";
 import HourlyForecast from "../hourlyForecasts/hourlyForecasts";
