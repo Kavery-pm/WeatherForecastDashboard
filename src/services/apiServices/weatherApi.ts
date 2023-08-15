@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-const API_KEY = '1ef47472140e1be85a3d9313547ab506';
+const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
 
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/';
+console.log(import.meta.env.VITE_REACT_APP_API_KEY);
 
 async function apiRequest(url:string) {
   try {
