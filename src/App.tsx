@@ -1,9 +1,7 @@
-
-
 // /**
 //  * Main application component for the Weather Dashboard.
 //  */
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Container,
   Typography,
@@ -28,7 +26,6 @@ import { WeatherData } from "./types";
 import theme, { titleFontFamily } from "./themes/themes"; // Import custom theme
 import { styled } from "@mui/system";
 
-
 // Styled components using @mui/system
 const AppContainer = styled(Container)(({ theme }) => ({
   background: `linear-gradient(-35deg, ${theme.palette.background.default} 0%, ${theme.palette.primary.main})`,
@@ -38,8 +35,6 @@ const AppTitle = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.primary,
   margin: "5px",
   fontFamily: `${titleFontFamily}!important`,
- 
- 
 }));
 
 const FavoritesPaper = styled(Paper)(({ theme }) => ({
@@ -56,7 +51,6 @@ const FavoritesPaper = styled(Paper)(({ theme }) => ({
     transform: "scale(1.05)",
     cursor: "pointer",
   },
- 
 }));
 const FavoriteCityItem = styled(Paper)(({ theme }) => ({
   padding: "17px",
@@ -82,7 +76,6 @@ const WeatherPaper = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.primary,
   display: "block",
   minHeight: "550px",
- 
 }));
 
 const AnimatedWeatherPaper = styled(WeatherPaper)(({ theme }) => ({
@@ -93,10 +86,7 @@ const AnimatedWeatherPaper = styled(WeatherPaper)(({ theme }) => ({
     transform: "scale(1.05)",
     cursor: "pointer",
   },
- 
 }));
-
-
 
 function App() {
   // State variables
@@ -108,7 +98,7 @@ function App() {
   const [error, setError] = useState<string | null>(null);
 
   // Fetch geolocation-based weather data on component mount
- 
+
   useEffect(() => {
     const fetchGeoWeather = async () => {
       try {
@@ -162,7 +152,7 @@ function App() {
       }
     }
   };
-    // Check if a city is in favorites
+  // Check if a city is in favorites
   const isCityInFavorites = cityName && favorites.includes(cityName);
 
   return (
@@ -180,7 +170,7 @@ function App() {
             errorMessage={error}
           />
         )}
-               {!error && (
+        {!error && (
           <>
             {/* Search form */}
             <SearchForm onSearch={handleSearch} />
@@ -189,44 +179,38 @@ function App() {
               <Grid item xs={12} md={4}>
                 {/* Favorite Cities */}
                 <FavoritesPaper elevation={3}>
-                
                   <Typography variant="h6" gutterBottom>
                     Favorite Cities
                   </Typography>
                   {favorites.length > 0 ? (
                     favorites.map((favoriteCity) => (
-                    <FavoriteCityItem
+                      <FavoriteCityItem
                         key={favoriteCity}
                         // className={classes.favoriteCityItem}
                         onClick={() => handleSearch(favoriteCity)}
                       >
-                      <FavoriteCityName>
-                          {favoriteCity}
-                          </FavoriteCityName>
-                    </FavoriteCityItem>
-                    
+                        <FavoriteCityName>{favoriteCity}</FavoriteCityName>
+                      </FavoriteCityItem>
                     ))
                   ) : (
                     <Typography>No favorite cities yet.</Typography>
                   )}
-                 </FavoritesPaper>
+                </FavoritesPaper>
               </Grid>
 
               <Grid item xs={12} md={8}>
                 {/* Weather display */}
                 {geoWeather && !cityName && (
                   <AnimatedWeatherPaper elevation={3}>
-                  
                     <TodayWeather
                       weather={geoWeather}
                       city={geoWeather.name}
                       forecast={forecast}
                     />
-                 
                   </AnimatedWeatherPaper>
                 )}
                 {cityName && weather && (
-                 <WeatherPaper elevation={3}>
+                  <WeatherPaper elevation={3}>
                     <TodayWeather
                       weather={weather}
                       city={cityName}
@@ -256,7 +240,7 @@ function App() {
                         </Button>
                       )}
                     </Box>
-                    </WeatherPaper>
+                  </WeatherPaper>
                 )}
               </Grid>
             </Grid>
