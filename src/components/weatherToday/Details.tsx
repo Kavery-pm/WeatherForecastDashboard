@@ -30,10 +30,9 @@ const Details: React.FC<DetailProps> = ({ data, city }) => {
    * @returns {string} Formatted date string.
    */
   const currentDate = getDate(data.dt);
-  const noDataProvided =
-  !data || Object.keys(data).length === 0 ;
-  
-  if(noDataProvided) return <ErrorBox flex="1" type="error"/>
+  const noDataProvided = !data || Object.keys(data).length === 0;
+
+  if (noDataProvided) return <ErrorBox flex="1" type="error" />;
   const content = (
     <>
       <Grid
@@ -65,9 +64,7 @@ const Details: React.FC<DetailProps> = ({ data, city }) => {
         }}
       >
         <TemperatureDetails max={data.main.temp_max} min={data.main.temp_min} />
-      
       </Grid>
-      
     </>
   );
   return <Layout content={content} title="Current Weather" />;
