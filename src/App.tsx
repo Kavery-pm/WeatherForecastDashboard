@@ -1,8 +1,9 @@
-/**
- * Main application component for the Weather Dashboard.
- */
 
-import { useState, useEffect } from "react";
+
+// /**
+//  * Main application component for the Weather Dashboard.
+//  */
+import  { useState, useEffect } from "react";
 import {
   Container,
   Typography,
@@ -12,7 +13,7 @@ import {
   ThemeProvider,
   CssBaseline,
 } from "@mui/material";
-import Box from "@mui/material/Box";
+import Box from "@mui/system/Box"; // Import from @mui/system
 import SearchForm from "./components/searchForm";
 import {
   fetchForecast,
@@ -24,78 +25,80 @@ import { getFavorites, saveFavorites } from "./helpers/storage";
 import WeeklyForecast from "./components/weeklyForecast/WeeklyForecast";
 import ErrorBox from "./components/reusable/errorBox";
 import { WeatherData } from "./types";
-import { makeStyles, createStyles } from "@mui/styles";
 import theme, { titleFontFamily } from "./themes/themes"; // Import custom theme
-/**
- * Custom styles for the components in the Weather Dashboard app.
- *
- * @param {import("@mui/styles").Theme} theme - The current theme.
- * @returns {import("@mui/styles").Styles} The custom styles object.
- */
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    appContainer: {
-      background: `linear-gradient(-35deg, ${theme.palette.background.default} 0%, ${theme.palette.primary.main})`,
-    },
-    appTitle: {
-      color: theme.palette.text.primary,
-      margin: "5px",
-      fontFamily: `${titleFontFamily}!important`,
-      fontSize: "1rem",
-    },
-    favoritesPaper: {
-      minHeight: "600px",
-      padding: "16px",
-      color: "#FFFFFF",
-      background: `linear-gradient(-35deg,${theme.palette.background.default} 0%, ${theme.palette.primary.main})`,
-      border: "2px solid #FFFFFF",
-      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)",
-      borderRadius: "8px",
-      transition: "transform 0.2s ease-in-out",
+import { styled } from "@mui/system";
 
-      "&:hover": {
-        borderColor: "#00bcd4",
-        transform: "scale(1.05)",
-        cursor: "pointer",
-      },
-    },
-    favoriteCityName: {
-      color: theme.palette.text.primary,
-      fontFamily: "'Poppins', Arial, sans-serif",
-    },
-    favoriteCityItem: {
-      padding: "17px",
-      marginBottom: "1rem",
-      borderRadius: "4px",
-      background: "linear-gradient(-35deg, #FF5722 0%, #FF9800 100%)",
-      boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.25)",
-      fontWeight: 600,
-      textTransform: "uppercase",
-      transition: "transform 0.2s ease-in-out",
-      "&:hover": {
-        transform: "scale(1.05)",
-      },
-    },
-    weatherPaper: {
-      padding: "2px",
-      color: theme.palette.text.primary,
-      display: "block",
-      minHeight: "550px",
-    },
-    animatedWeather: {
-      transition: "transform 0.2s ease-in-out",
-      border: `2px solid ${theme.palette.text.primary}`,
-      "&:hover": {
-        borderColor: theme.palette.secondary.main,
-        transform: "scale(1.05)",
-        cursor: "pointer",
-      },
-    },
-  })
-);
+
+// Styled components using @mui/system
+const AppContainer = styled(Container)(({ theme }) => ({
+  background: `linear-gradient(-35deg, ${theme.palette.background.default} 0%, ${theme.palette.primary.main})`,
+}));
+
+const AppTitle = styled(Typography)(({ theme }) => ({
+  color: theme.palette.text.primary,
+  margin: "5px",
+  fontFamily: `${titleFontFamily}!important`,
+ 
+ 
+}));
+
+const FavoritesPaper = styled(Paper)(({ theme }) => ({
+  minHeight: "600px",
+  padding: "16px",
+  color: "#FFFFFF",
+  background: `linear-gradient(-35deg,${theme.palette.background.default} 0%, ${theme.palette.primary.main})`,
+  border: "2px solid #FFFFFF",
+  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)",
+  borderRadius: "8px",
+  transition: "transform 0.2s ease-in-out",
+  "&:hover": {
+    borderColor: "#00bcd4",
+    transform: "scale(1.05)",
+    cursor: "pointer",
+  },
+ 
+}));
+const FavoriteCityItem = styled(Paper)(({ theme }) => ({
+  padding: "17px",
+  marginBottom: "1rem",
+  borderRadius: "4px",
+  background: "linear-gradient(-35deg, #FF5722 0%, #FF9800 100%)",
+  boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.25)",
+  fontWeight: 600,
+  textTransform: "uppercase",
+  transition: "transform 0.2s ease-in-out",
+  "&:hover": {
+    transform: "scale(1.05)",
+  },
+  color: theme.palette.text.primary,
+  fontFamily: "'Poppins', Arial, sans-serif",
+}));
+const FavoriteCityName = styled(Typography)(({ theme }) => ({
+  color: theme.palette.text.primary,
+  fontFamily: "'Poppins', Arial, sans-serif",
+}));
+const WeatherPaper = styled(Paper)(({ theme }) => ({
+  padding: "2px",
+  color: theme.palette.text.primary,
+  display: "block",
+  minHeight: "550px",
+ 
+}));
+
+const AnimatedWeatherPaper = styled(WeatherPaper)(({ theme }) => ({
+  transition: "transform 0.2s ease-in-out",
+  border: `2px solid ${theme.palette.text.primary}`,
+  "&:hover": {
+    borderColor: theme.palette.secondary.main,
+    transform: "scale(1.05)",
+    cursor: "pointer",
+  },
+ 
+}));
+
+
+
 function App() {
-  const classes = useStyles();
-
   // State variables
   const [cityName, setCityName] = useState<string>("");
   const [weather, setWeather] = useState<WeatherData | null>(null);
@@ -105,6 +108,7 @@ function App() {
   const [error, setError] = useState<string | null>(null);
 
   // Fetch geolocation-based weather data on component mount
+ 
   useEffect(() => {
     const fetchGeoWeather = async () => {
       try {
@@ -147,7 +151,6 @@ function App() {
       setError(errorMessage + " Enter a valid city name");
     }
   };
-
   // Handle adding a city to favorites
   const handleAddFavorite = () => {
     if (cityName && weather) {
@@ -159,22 +162,16 @@ function App() {
       }
     }
   };
-
-  // Check if a city is in favorites
+    // Check if a city is in favorites
   const isCityInFavorites = cityName && favorites.includes(cityName);
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container maxWidth="md" className={classes.appContainer}>
-        <Typography
-          variant="h4"
-          align="center"
-          gutterBottom
-          className={classes.appTitle}
-        >
+      <AppContainer maxWidth="md">
+        <AppTitle variant="h4" align="center" gutterBottom>
           Weather Dashboard
-        </Typography>
+        </AppTitle>
         {error && (
           <ErrorBox
             margin="3rem auto"
@@ -183,7 +180,7 @@ function App() {
             errorMessage={error}
           />
         )}
-        {!error && (
+               {!error && (
           <>
             {/* Search form */}
             <SearchForm onSearch={handleSearch} />
@@ -191,44 +188,45 @@ function App() {
             <Grid container spacing={2} sx={{ marginTop: 2 }}>
               <Grid item xs={12} md={4}>
                 {/* Favorite Cities */}
-                <Paper elevation={3} className={classes.favoritesPaper}>
+                <FavoritesPaper elevation={3}>
+                
                   <Typography variant="h6" gutterBottom>
                     Favorite Cities
                   </Typography>
                   {favorites.length > 0 ? (
                     favorites.map((favoriteCity) => (
-                      <Paper
+                    <FavoriteCityItem
                         key={favoriteCity}
-                        className={classes.favoriteCityItem}
+                        // className={classes.favoriteCityItem}
                         onClick={() => handleSearch(favoriteCity)}
                       >
-                        <Typography className={classes.favoriteCityName}>
+                      <FavoriteCityName>
                           {favoriteCity}
-                        </Typography>
-                      </Paper>
+                          </FavoriteCityName>
+                    </FavoriteCityItem>
+                    
                     ))
                   ) : (
                     <Typography>No favorite cities yet.</Typography>
                   )}
-                </Paper>
+                 </FavoritesPaper>
               </Grid>
 
               <Grid item xs={12} md={8}>
                 {/* Weather display */}
                 {geoWeather && !cityName && (
-                  <Paper
-                    elevation={3}
-                    className={`${classes.weatherPaper} ${classes.animatedWeather}`}
-                  >
+                  <AnimatedWeatherPaper elevation={3}>
+                  
                     <TodayWeather
                       weather={geoWeather}
                       city={geoWeather.name}
                       forecast={forecast}
                     />
-                  </Paper>
+                 
+                  </AnimatedWeatherPaper>
                 )}
                 {cityName && weather && (
-                  <Paper elevation={3} className={classes.weatherPaper}>
+                 <WeatherPaper elevation={3}>
                     <TodayWeather
                       weather={weather}
                       city={cityName}
@@ -258,7 +256,7 @@ function App() {
                         </Button>
                       )}
                     </Box>
-                  </Paper>
+                    </WeatherPaper>
                 )}
               </Grid>
             </Grid>
@@ -266,7 +264,7 @@ function App() {
             <WeeklyForecast forecastData={forecast} />
           </>
         )}
-      </Container>
+      </AppContainer>
     </ThemeProvider>
   );
 }
